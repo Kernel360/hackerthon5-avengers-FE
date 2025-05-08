@@ -23,12 +23,13 @@ const MovieDetail = ({ movieId }) => {
     const { movieDto, reviews } = data;
 
     return (
-        <div style={{ padding: "20px" }}>
+        <div style={{padding: "20px"}}>
             <h1>{movieDto.title}</h1>
-            <img src={`https://image.tmdb.org/t/p/w300${movieDto.poster_path}`} alt={movieDto.title} />
+            <img src={`https://image.tmdb.org/t/p/w300${movieDto.poster_path}`} alt={movieDto.title}/>
             <p><strong>장르:</strong> {movieDto.genre}</p>
             <p><strong>개봉일:</strong> {movieDto.release_date}</p>
             <p><strong>평점:</strong> {movieDto.vote_average}</p>
+            <p><strong>우리 사이트 별점:</strong> {movieDto.rating}</p>
             <p><strong>줄거리:</strong> {movieDto.overview}</p>
 
             <h2>리뷰</h2>
@@ -36,7 +37,8 @@ const MovieDetail = ({ movieId }) => {
                 <p>아직 리뷰가 없습니다.</p>
             ) : (
                 reviews.map((review) => (
-                    <div key={review.reviewId} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+                    <div key={review.reviewId}
+                         style={{border: "1px solid #ccc", padding: "10px", marginBottom: "10px"}}>
                         <h4>{review.title} (평점: {review.memberRate})</h4>
                         <p>{review.content}</p>
                         <small>작성일: {new Date(review.postDate).toLocaleString()}</small>
