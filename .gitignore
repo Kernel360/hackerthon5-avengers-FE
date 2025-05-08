@@ -1,0 +1,45 @@
+# dependencies
+/node_modules
+
+# production build
+/dist
+/build
+
+# misc
+.DS_Store
+.env
+.env.*.local
+*.local
+.npmrc
+.yarnrc
+
+# log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# testing
+/coverage
+
+# OS-specific
+Thumbs.db
+ehthumbs.db
+*.swp
+
+# Parcel-bundler cache
+.cache/
+
+# Optional eslint cache
+.eslintcache
+
+# Storybook build
+.out/
+
+# Mac system files
+*.DS_Store
