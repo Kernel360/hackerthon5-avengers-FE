@@ -29,8 +29,9 @@ const MovieDetail = ({ movieId }) => {
             <p><strong>장르:</strong> {movieDto.genre}</p>
             <p><strong>개봉일:</strong> {movieDto.release_date}</p>
             <p><strong>평점:</strong> {movieDto.vote_average}</p>
-            <p><strong>우리 사이트 별점:</strong> {movieDto.rating}</p>
-            <p><strong>줄거리:</strong> {movieDto.overview}</p>
+            <p><strong>우리 사이트
+                별점:</strong> {isNaN(movieDto.rating) || movieDto.rating == null ? '아직 별점이 없습니다' : movieDto.rating}</p>
+            <p><strong>줄거리:</strong> {movieDto.overview ? movieDto.overview : '줄거리가 없습니다'}</p>
 
             <h2>리뷰</h2>
             {reviews.length === 0 ? (
@@ -39,8 +40,10 @@ const MovieDetail = ({ movieId }) => {
                 reviews.map((review) => (
                     <div key={review.reviewId}
                          style={{border: "1px solid #ccc", padding: "10px", marginBottom: "10px"}}>
-                        <h4>{review.title} (평점: {review.memberRate})</h4>
-                        <p>{review.content}</p>
+                        <h4>
+                            {review.title}
+                            {review.memberRate ? ` (평점: ${review.memberRate})` : ' (아직 평점이 없습니다)'}
+                        </h4>                        <p>{review.content}</p>
                         <small>작성일: {new Date(review.postDate).toLocaleString()}</small>
                     </div>
                 ))
