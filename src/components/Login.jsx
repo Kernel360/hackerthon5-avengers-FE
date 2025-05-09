@@ -23,8 +23,8 @@ export default function LoginPage() {
             });
 
             const data = await res.json();
-            localStorage.setItem('jwt', data.token);
-            navigate(`/mypage`);
+            localStorage.setItem('jwt', data.jwt);
+            navigate(`/review/getMyReview`);
         } catch (err) {
             alert('로그인 실패');
         }
