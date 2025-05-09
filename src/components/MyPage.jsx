@@ -50,7 +50,7 @@ const MyPage = () => {
                     {reviews.map((review) => (
                         <li key={review.id} style={styles.reviewItem}>
                             <h4>{review.title}</h4>
-                            <p><strong>영화:</strong> {review.movie?.title}</p>
+                            <p><strong>영화:</strong> {review.movieTitle}</p>
                             <p><strong>내용:</strong> {review.content}</p>
                             <p><strong>평점:</strong> {review.memberRate} / 5</p>
                             <p><small>작성일: {new Date(review.postDate).toLocaleDateString()}</small></p>
