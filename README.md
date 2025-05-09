@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# 🎬 MOVIE REVIEW
+<p>높은 자유도로 영화 리뷰를 나눌 수 있는 온라인 플랫폼</p>
+<br><br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **진행 기간 |** 2025.05.07 ~ 2025.05.09 (약 2.5일) <br>
+> **사이트 방문하기 |** https://hackerthon5-avengers-fe.vercel.app/ <br>
+> **팀 명 |** Avengers
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+### 🔍 프로젝트 목적
+CRUD기능 구현 + 주어진 FE/BE를 사용하는 것을 조건으로 단기간 진행되는 해커톤 프로젝트이기에,개발자로써 필수적인 역량을 다지기 위한 기회로 상기시켰습니다. <br>
+Spring Security, JPA, JWT, 배포 등 기초 지식을 재검점하며 동료와의 협업을 통해 단기간 몰입이 가능했습니다.
 
-### `npm start`
+<br><br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ✅ 프로젝트 주 기능
+```
+1. 토큰을 이용한 고유 회원제도
+2. 리뷰 CRUD + 자신의 리뷰만 수정 및 삭제 가능
+3. 1시간 단위로 영화 정보 업데이트
+4. 영화 상세 페이지마다 휘발성 단체 채팅 기능
+```
+<br><br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🧰 Dev tools
 
-### `npm test`
+| Category | Tech Stack |
+|:--------:|:-----------:|
+| **🚀 FE** | <img src="https://img.shields.io/badge/react-%2361DAFB.svg?&style=for-the-badge&logo=react&logoColor=black" /> <img src="https://img.shields.io/badge/next.js-%23000000.svg?&style=for-the-badge&logo=next.js&logoColor=white" /> |
+| **🚀 BE** | <img src="https://img.shields.io/badge/spring-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white" /> <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/java-%23007396.svg?&style=for-the-badge&logo=java&logoColor=white" /> |
+| **☁️ Infra** | <img src="https://img.shields.io/badge/nginx-%23269539.svg?&style=for-the-badge&logo=nginx&logoColor=white" /> <img src="https://img.shields.io/badge/amazon%20aws-%23232F3E.svg?&style=for-the-badge&logo=amazon%20aws&logoColor=white" /> |
+| **📁 Data** | <img src="https://img.shields.io/badge/mysql-%234479A1.svg?&style=for-the-badge&logo=mysql&logoColor=white" /> |
+| **💬 ETC** | <img src="https://img.shields.io/badge/notion-%23000000.svg?&style=for-the-badge&logo=notion&logoColor=white" /> <img src="https://img.shields.io/badge/discord-%237289DA.svg?&style=for-the-badge&logo=discord&logoColor=white" /> <img src="https://img.shields.io/badge/git-%23F05032.svg?&style=for-the-badge&logo=git&logoColor=white" /> <img src="https://img.shields.io/badge/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white" /> |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br><br><br>
+### 🛠️ Architecture
+<img alt="아키텍처" width="800" src="https://github.com/user-attachments/assets/926f3553-4c70-43bc-943d-8e13525cef83" />
+<br><br><br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📑 ERD
+<img alt="erd" width="790" src="https://github.com/user-attachments/assets/4468e70a-3bc4-4ac5-971d-7c4457f88de9" />
 
-### `npm run eject`
+<br><br><br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🖥 화면 구성
+| 메인화면 | 영화 채팅 | 리뷰 관리 |
+|:---:|:---:|:---:|
+|<img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/>|<img src="https://user-images.githubusercontent.com/80824750/208456234-fb5fe434-aa65-4d7a-b955-89098d5bbe0b.gif" width="400"/>|
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br><br><br>
+### 🧑🏻‍💻 COLLABORATOR
+| 방지원(TL) | 박소윤 | 정수정 | 김진성 |
+|:------:|:------:|:------:|:------:|
+| <img src="https://github.com/user-attachments/assets/67384a6d-4198-446e-b3ae-78fe76dbc92a" alt="방지원" width="150"> | <img src="" alt="박소윤" width="150"> | <img src="" alt="정수정" width="150"> | <img src="" alt="김진성" width="150"> |
+| FE/BE | FE/BE | FE/BE | FE/BE |
+| [지언이](https://github.com/banxzxx) | [소유닝](https://github.com/ehouse16) | [수정이](https://github.com/SujeongJeong) | [진성이](https://github.com/JINS-DE) |
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
