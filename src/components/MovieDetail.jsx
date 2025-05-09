@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import ChatBox from './ChatBox';
 const MovieDetail = ({ movieId }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -48,6 +48,9 @@ const MovieDetail = ({ movieId }) => {
                     </div>
                 ))
             )}
+            <h2>영화 채팅</h2>
+            <ChatBox movieId={movieId} />
+
         </div>
     );
 };
