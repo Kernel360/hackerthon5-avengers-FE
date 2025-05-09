@@ -17,17 +17,23 @@ export default function RegisterPage() {
         };
 
         try {
-            await fetch(`/api/signup`, {
+            const response = await fetch(`/api/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(payload),
             });
-            alert('회원가입 성공! 로그인 해주세요.');
-            navigate(`/api/login`);
+
+            if (response.ok) {
+                alert('회원가입 성공! 로그인 해주세요.');
+                navigate(`/api/login`);  // /api/login은 API 엔드포인트이고, 실제 페이지는 /login일 가능성이 높습니다
+            } else {
+                const errorData = await response.text();
+                alert(`회원가입 실패: ${errorData}`);
+            }
         } catch (err) {
-            alert('회원가입 실패');
+            alert('회원가입 실패: ' + err.message);
         }
     };
 
