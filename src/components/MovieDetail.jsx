@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ChatBox from './ChatBox';
+import { Button, Row, Col } from "react-bootstrap"; // 부트스트랩 컴포넌트 임포트
+import {Link, useNavigate} from "react-router-dom"; // useNavigate 추가
+
 const MovieDetail = ({ movieId }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`/api/movies/${movieId}`)
@@ -33,23 +37,42 @@ const MovieDetail = ({ movieId }) => {
                 별점:</strong> {isNaN(movieDto.rating) || movieDto.rating == null ? '아직 별점이 없습니다' : movieDto.rating*2}</p>
             <p><strong>줄거리:</strong> {movieDto.overview ? movieDto.overview : '줄거리가 없습니다'}</p>
 
-            <h2>리뷰</h2>
-            {reviews.length === 0 ? (
-                <p>아직 리뷰가 없습니다.</p>
-            ) : (
+            <Row className="d-flex justify-content-between align-items-center">
+                <Col>
+                    <h2>리뷰</h2>
+                </Col>
+                <Col className="text-end">
+                    <Button
+                        variant="primary" // 버튼 색상
+                        size="lg" // 버튼 크기
+                        onClick={() => navigate(`/review/write/${movieId}`)}
+                    >
+                        리뷰 작성하기 🥹
+                    </Button>
+                </Col>
+            </Row>
+
+            {Array.isArray(reviews) ? (
                 reviews.map((review) => (
                     <div key={review.reviewId}
-                         style={{border: "1px solid #ccc", padding: "10px", marginBottom: "10px"}}>
-                        <h4>
-                            {review.title}
-                            {review.memberRate ? ` (평점: ${review.memberRate})` : ' (아직 평점이 없습니다)'}
-                        </h4>                        <p>{review.content}</p>
-                        <small>작성일: {new Date(review.postDate).toLocaleString()}</small>
+
+                         style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+                        <h4>{review.title} (평점: {review.memberRate * 2})</h4>
+                        <p>{review.content}</p>
+                        <small>
+                            <Link to={`/reviewPage/${review.memberId}`} style={{ textDecoration: 'none' }}>
+                                {review.nickname}
+                            </Link>, {new Date(review.postDate).toLocaleString()}
+                        </small>
+
                     </div>
                 ))
+            ) : (
+                <p>리뷰 정보가 없습니다.</p>
             )}
             <h2>영화 채팅</h2>
             <ChatBox movieId={movieId} />
+
 
         </div>
     );
