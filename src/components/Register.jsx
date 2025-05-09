@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'RegisterPage.css'; // CSS 파일을 임포트
 import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
