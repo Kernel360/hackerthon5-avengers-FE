@@ -57,7 +57,7 @@ Spring Security, JPA, JWT, 배포 등 기초 지식을 재검점하며 동료와
 ### 🧑🏻‍💻 COLLABORATOR
 | 방지원(TL) | 박소윤 | 정수정 | 김진성 |
 |:------:|:------:|:------:|:------:|
-| <img src="https://github.com/user-attachments/assets/67384a6d-4198-446e-b3ae-78fe76dbc92a" alt="방지원" width="150"> | <img src="" alt="박소윤" width="150"> | <img src="" alt="정수정" width="150"> | <img src="" alt="김진성" width="150"> |
+| <img src="https://github.com/user-attachments/assets/67384a6d-4198-446e-b3ae-78fe76dbc92a" alt="방지원" width="150"> | <img src="https://avatars.githubusercontent.com/u/61807816?v=4" alt="박소윤" width="150"> | <img src="" alt="정수정" width="150"> | <img src="" alt="김진성" width="150"> |
 | FE/BE | FE/BE | FE/BE | FE/BE |
 | [지언이](https://github.com/banxzxx) | [소유닝](https://github.com/ehouse16) | [수정이](https://github.com/SujeongJeong) | [진성이](https://github.com/JINS-DE) |
 
