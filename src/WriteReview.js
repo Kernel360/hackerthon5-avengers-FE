@@ -18,7 +18,7 @@ const WriteReview = () => {
 
 
     useEffect(() => {
-        fetch(`/api/movies/${movieId}`)
+        fetch(`https://kernel360-avengers-team.duckdns.org/api/movies/${movieId}`)
             .then((res) => res.json())
             .then((data) => {
                 setMovie(data.movieDto); // 영화 정보 저장
@@ -40,7 +40,7 @@ const WriteReview = () => {
         e.preventDefault();
 
         // 리뷰 데이터 전송
-        fetch("/review/createReview", {
+        fetch("https://kernel360-avengers-team.duckdns.org/review/createReview", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

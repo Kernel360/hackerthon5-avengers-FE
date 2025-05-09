@@ -5,7 +5,7 @@ const TopMovie = () => {
     const [topMovies, setTopMovies] = useState([]);
 
     useEffect(() => {
-        fetch('/api/movies/getPopular')
+        fetch('https://kernel360-avengers-team.duckdns.org/api/movies/getPopular')
             .then((res) => res.json())
             .then((data) => {
                 if (data.results) {

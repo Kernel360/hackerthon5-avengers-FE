@@ -9,7 +9,7 @@ const MyPage = () => {
         if (!token) return;
 
         // 유저 정보
-        fetch('/api/users/me', {
+        fetch('https://kernel360-avengers-team.duckdns.org/api/users/me', {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ const MyPage = () => {
             .catch(console.error);
 
         // 유저 리뷰
-        fetch('/review/getMyReview', {
+        fetch('https://kernel360-avengers-team.duckdns.org/review/getMyReview', {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

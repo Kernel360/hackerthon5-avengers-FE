@@ -9,7 +9,7 @@ const MovieDetail = ({ movieId }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`/api/movies/${movieId}`)
+        fetch(`https://kernel360-avengers-team.duckdns.org/api/movies/${movieId}`)
             .then((res) => res.json())
             .then((data) => {
                 setData(data);

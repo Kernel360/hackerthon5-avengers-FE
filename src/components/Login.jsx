@@ -14,7 +14,7 @@ export default function LoginPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`/api/login`, {
+            const res = await fetch(`https://kernel360-avengers-team.duckdns.org/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
