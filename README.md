@@ -48,9 +48,10 @@ Spring Security, JPA, JWT, 배포 등 기초 지식을 재검점하며 동료와
 
 
 ### 🖥 화면 구성
-| 메인화면 | 영화상세 |
-|:---:|:---:|
+| 메인화면 | 영화 채팅 | 리뷰 관리 |
+|:---:|:---:|:---:|
 |<img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/>|<img src="https://user-images.githubusercontent.com/80824750/208456234-fb5fe434-aa65-4d7a-b955-89098d5bbe0b.gif" width="400"/>|
+
 
 <br><br><br>
 ### 🧑🏻‍💻 COLLABORATOR
