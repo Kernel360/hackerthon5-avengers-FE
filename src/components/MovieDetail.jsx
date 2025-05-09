@@ -30,7 +30,7 @@ const MovieDetail = ({ movieId }) => {
             <p><strong>개봉일:</strong> {movieDto.release_date}</p>
             <p><strong>평점:</strong> {movieDto.vote_average}</p>
             <p><strong>우리 사이트
-                별점:</strong> {isNaN(movieDto.rating) || movieDto.rating == null ? '아직 별점이 없습니다' : movieDto.rating}</p>
+                별점:</strong> {isNaN(movieDto.rating) || movieDto.rating == null ? '아직 별점이 없습니다' : movieDto.rating*2}</p>
             <p><strong>줄거리:</strong> {movieDto.overview ? movieDto.overview : '줄거리가 없습니다'}</p>
 
             <h2>리뷰</h2>

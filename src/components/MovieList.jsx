@@ -40,7 +40,7 @@ const MovieCard = ({ movie }) => {
                     <h2>{movie.title}</h2>
                     <p><strong>장르:</strong> {movie.genre}</p>
                     <p><strong>평점:</strong> {renderStars(movie.vote_average)}</p>
-                    <p><strong>우리 사이트 평점:</strong> {renderStars(movie.rating)}</p>
+                    <p><strong>우리 사이트 평점:</strong> {renderStars(movie.rating*2)}</p>
                     <p><strong>개봉일:</strong> {movie.release_date}</p>
                 </div>
             </div>
@@ -53,7 +53,7 @@ const MovieList = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [keyword, setKeyword] = useState('');
-    const [searchType, setSearchType] = useState('all');
+    const [searchType, setSearchType] = useState('');
 
     const fetchMovies = useCallback(() => {
         const params = new URLSearchParams({
