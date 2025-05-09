@@ -1,33 +1,34 @@
-// src/pages/MyPage.jsx
 import React, { useEffect, useState } from 'react';
 
 const MyPage = () => {
     const [member, setMember] = useState(null);
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         const token = localStorage.getItem('jwt');
+        if (!token) return;
 
-        if (token) {
-            fetch('/api/user/me', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then((res) => {
-                    if (!res.ok) {
-                        throw new Error('유저 정보를 불러오지 못했습니다.');
-                    }
-                    return res.json();
-                })
-                .then((data) => {
-                    setMember(data);
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        }
+        // 유저 정보
+        fetch('/api/users/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => setMember(data))
+            .catch(console.error);
+
+        // 유저 리뷰
+        fetch('/review/getMyReview', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => setReviews(data))
+            .catch(console.error);
     }, []);
 
     if (!member) return <div>로딩 중...</div>;
@@ -40,6 +41,26 @@ const MyPage = () => {
                 <p><strong>이메일:</strong> {member.email}</p>
                 <p><strong>등록일:</strong> {new Date(member.registeredAt).toLocaleDateString()}</p>
             </div>
+
+            <h3 style={{ marginTop: '30px' }}>내가 작성한 리뷰</h3>
+            {reviews.length === 0 ? (
+                <p>작성한 리뷰가 없습니다.</p>
+            ) : (
+                <ul style={styles.reviewList}>
+                    {reviews.map((review) => (
+                        <li key={review.id} style={styles.reviewItem}>
+                            <h4>{review.title}</h4>
+                            <p><strong>영화:</strong> {review.movie?.title}</p>
+                            <p><strong>내용:</strong> {review.content}</p>
+                            <p><strong>평점:</strong> {review.memberRate} / 5</p>
+                            <p><small>작성일: {new Date(review.postDate).toLocaleDateString()}</small></p>
+                            {review.updateDate && (
+                                <p><small>수정일: {new Date(review.updateDate).toLocaleDateString()}</small></p>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
@@ -47,7 +68,7 @@ const MyPage = () => {
 const styles = {
     container: {
         padding: '20px',
-        maxWidth: '600px',
+        maxWidth: '700px',
         margin: '0 auto'
     },
     infoBox: {
@@ -55,6 +76,17 @@ const styles = {
         padding: '20px',
         borderRadius: '8px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+    },
+    reviewList: {
+        listStyle: 'none',
+        padding: 0
+    },
+    reviewItem: {
+        backgroundColor: '#fff',
+        padding: '15px',
+        borderRadius: '6px',
+        marginBottom: '15px',
+        boxShadow: '0 1px 5px rgba(0,0,0,0.05)'
     }
 };
 

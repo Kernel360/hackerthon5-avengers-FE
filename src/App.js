@@ -27,7 +27,7 @@ function App() {
                 {/* 로그인 페이지 라우트 추가 */}
                 <Route path="/api/login" element={<Login />}/>
                 {/* 마이페이지 라우트 추가 */}
-                <Route path="/mypage" element={<MyPage />} />
+                <Route path="/review/getMyReview" element={<MyPage />} />
             </Routes>
         </Router>
     );
