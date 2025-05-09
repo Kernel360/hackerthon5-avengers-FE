@@ -22,7 +22,7 @@ function App() {
                 <Route path="/" element={<MovieList />} />
                 <Route path="/movies/:movieId" element={<MovieDetailWrapper />} />
                 <Route path="/review/write/:movieId" element={<WriteReview />} />
-                <Route path="/review/edit/:review" element={<EditReview />} />
+                <Route path="/review/edit/:reviewId" element={<EditReview />} />
                 <Route path="/review/delete/:review" element={<DeleteReview />} />
                 <Route path="/reviewPage/:memberId" element={<MemberReview />} />
                 {/* 회원가입 페이지 라우트 추가 */}

@@ -3,18 +3,20 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditReview = () => {
+    const { reviewId } = useParams(); // ✅ URL에서 reviewId 추출
+    const [review, setReview] = useState(null); // review 상태와 그 값을 설정하는 함수
     const navigate = useNavigate();
-    const [review, setReview] = useState(null);
+    console.log("reviewId:", reviewId);  // 값이 잘 출력되는지 확인
 
     useEffect(() => {
-        fetch(`/review/getReview/${review.reviewId}`)
+        fetch(`/review/getOneReview/${reviewId}`)
             .then((res) => res.json())
             .then((data) => setReview(data))
             .catch((err) => {
                 alert("리뷰를 불러오지 못했습니다.");
                 console.error(err);
             });
-    }, [review.reviewId]);
+    }, [reviewId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,8 +25,8 @@ const EditReview = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        fetch("/review/updateReview", {
+        console.log("호출됨");
+        fetch(`/review/updateReview?reviewId=${reviewId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

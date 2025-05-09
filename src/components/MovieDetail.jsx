@@ -3,10 +3,30 @@ import ChatBox from './ChatBox';
 import { Button, Row, Col } from "react-bootstrap"; // 부트스트랩 컴포넌트 임포트
 import {Link, useNavigate} from "react-router-dom"; // useNavigate 추가
 
+import { jwtDecode } from 'jwt-decode';
+
+
 const MovieDetail = ({ movieId }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const token = localStorage.getItem('jwt');
+    const [currentMemberId, setCurrentMemberId] = useState(0);
+
+    useEffect(() => {
+        // 로그인한 사용자 정보 디코딩
+        const token = localStorage.getItem("jwt");
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                console.log("Decoded JWT:", decoded); // 확인용
+                setCurrentMemberId(decoded.memberId); // claim 이름에 따라 수정 필요
+            } catch (err) {
+                console.error("JWT decode error:", err);
+            }
+        }
+    }, []);
+
 
     useEffect(() => {
         fetch(`/api/movies/${movieId}`)
@@ -20,6 +40,31 @@ const MovieDetail = ({ movieId }) => {
                 setLoading(false);
             });
     }, [movieId]);
+
+    const handleDelete = (reviewId) => {
+        if (window.confirm("정말 이 리뷰를 삭제하시겠습니까?")) {
+            fetch(`/review/deleteReview?reviewId=${reviewId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ reviewId }), // 또는 API가 요구하는 형식
+            })
+                .then((res) => {
+                    if (!res.ok) throw new Error("삭제 실패");
+                    alert("리뷰가 삭제되었습니다.");
+                    // 삭제 후 리뷰 목록 새로고침
+                    return fetch(`/api/movies/${movieId}`)
+                        .then((res) => res.json())
+                        .then((data) => setData(data));
+                })
+                .catch((err) => {
+                    console.error("삭제 실패:", err);
+                    alert("리뷰 삭제 중 오류가 발생했습니다.");
+                });
+        }
+    };
+
 
     if (loading) return <div>Loading...</div>;
     if (!data) return <div>영화 정보를 불러올 수 없습니다.</div>;
@@ -62,12 +107,22 @@ const MovieDetail = ({ movieId }) => {
                                 {review.nickname}
                             </Link>, {new Date(review.postDate).toLocaleString()}
                         </small>
-                        {review.memberId === parseInt(sessionStorage.getItem("memberId")) && (
+                        {/* 로그인한 사용자만 수정/삭제 버튼 보이게 */}
+                        {String(currentMemberId) === String(review.memberId) && (
                             <div className="mt-2">
-                                <Button variant="warning" size="sm" onClick={() => navigate(`/review/edit/${review}`)}>
+                                <Button
+                                    variant="warning"
+                                    size="sm"
+                                    className="me-2"
+                                    onClick={() => navigate(`/review/edit/${review.reviewId}`)}
+                                >
                                     수정
-                                </Button>{' '}
-                                <Button variant="danger" size="sm" onClick={() => handleDelete(review.reviewId)}>
+                                </Button>
+                                <Button
+                                    variant="danger"
+                                    size="sm"
+                                    onClick={() => handleDelete(review.reviewId)}
+                                >
                                     삭제
                                 </Button>
                             </div>
