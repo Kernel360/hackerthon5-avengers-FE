@@ -54,9 +54,7 @@ const MovieDetail = ({ movieId }) => {
 
             {Array.isArray(reviews) ? (
                 reviews.map((review) => (
-                    <div key={review.reviewId}
-
-                         style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+                    <div key={review.reviewId} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
                         <h4>{review.title} (평점: {review.memberRate * 2})</h4>
                         <p>{review.content}</p>
                         <small>
@@ -64,7 +62,16 @@ const MovieDetail = ({ movieId }) => {
                                 {review.nickname}
                             </Link>, {new Date(review.postDate).toLocaleString()}
                         </small>
-
+                        {review.memberId === parseInt(sessionStorage.getItem("memberId")) && (
+                            <div className="mt-2">
+                                <Button variant="warning" size="sm" onClick={() => navigate(`/review/edit/${review}`)}>
+                                    수정
+                                </Button>{' '}
+                                <Button variant="danger" size="sm" onClick={() => handleDelete(review.reviewId)}>
+                                    삭제
+                                </Button>
+                            </div>
+                        )}
                     </div>
                 ))
             ) : (
