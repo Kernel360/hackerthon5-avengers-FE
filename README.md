@@ -9,7 +9,7 @@
 <br>
 
 ### 🔍 프로젝트 목적
-CRUD기능 구현 + 주어진 FE/BE를 사용하는 것을 조건으로 단기간 진행되는 해커톤 프로젝트이기에,개발자로써 필수적인 역량을 다지기 위한 기회로 상기시켰습니다. <br>
+CRUD기능 구현 + 주어진 FE/BE를 사용하는 것을 조건으로 단기간 진행되는 해커톤 프로젝트이기에, 개발자로써 필수적인 역량을 다지기 위한 기회로 상기시켰습니다. <br>
 Spring Security, JPA, JWT, 배포 등 기초 지식을 재검점하며 동료와의 협업을 통해 단기간 몰입이 가능했습니다.
 
 <br><br>
@@ -57,7 +57,7 @@ Spring Security, JPA, JWT, 배포 등 기초 지식을 재검점하며 동료와
 ### 🧑🏻‍💻 COLLABORATOR
 | 방지원(TL) | 박소윤 | 정수정 | 김진성 |
 |:------:|:------:|:------:|:------:|
-| <img src="https://github.com/user-attachments/assets/67384a6d-4198-446e-b3ae-78fe76dbc92a" alt="방지원" width="150"> | <img src="https://avatars.githubusercontent.com/u/61807816?v=4" alt="박소윤" width="150"> | <img src="" alt="정수정" width="150"> | <img src="https://github.com/user-attachments/assets/27735c33-d073-4a2f-8508-ea479cb3fc6d" alt="김진성" width="150"> |
+| <img src="https://github.com/user-attachments/assets/67384a6d-4198-446e-b3ae-78fe76dbc92a" alt="방지원" width="150"> | <img src="https://avatars.githubusercontent.com/u/61807816?v=4" alt="박소윤" width="150"> | <img src="https://github.com/user-attachments/assets/8cf9c2eb-b809-4711-9d33-35e234a0aa6a" alt="정수정" width="150"> | <img src="https://github.com/user-attachments/assets/27735c33-d073-4a2f-8508-ea479cb3fc6d" alt="김진성" width="150"> |
 | FE/BE | FE/BE | FE/BE | FE/BE |
 | [지언이](https://github.com/banxzxx) | [소유닝](https://github.com/ehouse16) | [수정이](https://github.com/SujeongJeong) | [진성이](https://github.com/JINS-DE) |
 |  | 영화 기능 담당 |  |
