@@ -1,37 +1,63 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom"; // useParams로 movieId 받아오기, useNavigate로 페이지 이동
-
+import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext"; // ✅ AuthContext에서 jwt 가져오기
 
 const WriteReview = () => {
-    const { movieId } = useParams(); // URL에서 movieId 받아오기
-    const navigate = useNavigate(); // 페이지 이동 함수
+    const { movieId } = useParams();
+    const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
+    const { jwt } = useAuth(); // ✅ 로그인 토큰 가져오기
     const [review, setReview] = useState({
         title: "",
         content: "",
         memberRate: 5,
     });
 
-    const [memberId, setMemberId] = useState(0);
-    const [nickname, setNickname] = useState("DUMMY DATA");
+    const [memberId, setMemberId] = useState(null);
+    const [nickname, setNickname] = useState("");
 
-
+    // 영화 정보 불러오기
     useEffect(() => {
-        fetch(`https://kernel360-avengers-team.duckdns.org/api/movies/${movieId}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/movies/${movieId}`)
             .then((res) => res.json())
             .then((data) => {
-                setMovie(data.movieDto); // 영화 정보 저장
+                setMovie(data.movieDto);
             })
             .catch((error) => {
                 console.error("Failed to fetch movie details:", error);
             });
     }, [movieId]);
 
+    // ✅ 로그인된 유저 정보 불러오기
+    useEffect(() => {
+        if (!jwt) return;
+
+        fetch("${process.env.REACT_APP_API_BASE_URL}/api/users/me", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            },
+        })
+            .then((res) => {
+                if (!res.ok) throw new Error("인증 실패");
+                return res.json();
+            })
+            .then((data) => {
+                setMemberId(data.memberId);
+                setNickname(data.nickname);
+            })
+            .catch((err) => {
+                console.error("사용자 정보 로딩 실패:", err);
+                alert("로그인이 필요합니다.");
+                navigate("/api/login");
+            });
+    }, [jwt]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setReview((prevReview) => ({
-            ...prevReview,
+        setReview((prev) => ({
+            ...prev,
             [name]: value,
         }));
     };
@@ -39,28 +65,26 @@ const WriteReview = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // 리뷰 데이터 전송
-        fetch("https://kernel360-avengers-team.duckdns.org/review/createReview", {
+        fetch("${process.env.REACT_APP_API_BASE_URL}/review/createReview", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`, // ✅ JWT 함께 전송
             },
             body: JSON.stringify({
                 movieId,
                 memberId,
                 nickname,
-                title: review.title,
-                content: review.content,
-                memberRate: review.memberRate,
+                ...review,
             }),
         })
             .then((res) => res.json())
             .then(() => {
                 alert("리뷰가 작성되었습니다!");
-                navigate(`/movies/${movieId}`); // 영화 상세 페이지로 이동
+                navigate(`/movies/${movieId}`);
             })
             .catch((error) => {
-                console.error("Failed to submit review:", error);
+                console.error("리뷰 등록 실패:", error);
                 alert("리뷰 작성에 실패했습니다.");
             });
     };
@@ -70,7 +94,7 @@ const WriteReview = () => {
     return (
         <div style={{ padding: "20px" }}>
             <h1>영화 리뷰 작성</h1>
-            <h2>{movie.title}</h2> {/* 영화 제목 */}
+            <h2>{movie.title}</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formReviewTitle">
                     <Form.Label>리뷰 제목</Form.Label>
@@ -79,7 +103,6 @@ const WriteReview = () => {
                         name="title"
                         value={review.title}
                         onChange={handleChange}
-                        placeholder="리뷰 제목을 작성해주세요"
                         required
                     />
                 </Form.Group>
@@ -92,7 +115,6 @@ const WriteReview = () => {
                         name="content"
                         value={review.content}
                         onChange={handleChange}
-                        placeholder="리뷰 내용을 작성해주세요"
                         required
                     />
                 </Form.Group>
@@ -106,17 +128,12 @@ const WriteReview = () => {
                         onChange={handleChange}
                         required
                     >
-                        {[1, 2, 3, 4, 5].map((memberRate) => (
-                            <option key={memberRate} value={memberRate}>
-                                {memberRate}점
+                        {[1, 2, 3, 4, 5].map((rate) => (
+                            <option key={rate} value={rate}>
+                                {rate}점
                             </option>
                         ))}
                     </Form.Control>
-
-                </Form.Group>
-                <Form.Group controlId="formHiddenData">
-                    <input type="hidden" name="memberId" value={memberId}/>
-                    <input type="hidden" name="nickname" value={nickname}/>
                 </Form.Group>
 
                 <Row className="mt-3">
@@ -126,10 +143,7 @@ const WriteReview = () => {
                         </Button>
                     </Col>
                     <Col className="text-end">
-                        <Button
-                            variant="secondary"
-                            onClick={() => navigate(`/movies/${movieId}`)}
-                        >
+                        <Button variant="secondary" onClick={() => navigate(`/movies/${movieId}`)}>
                             취소
                         </Button>
                     </Col>

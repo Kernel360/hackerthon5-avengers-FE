@@ -8,7 +8,7 @@ const MemberReview = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`https://kernel360-avengers-team.duckdns.org/review/getMemberReview?memberId=${memberId}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/review/getMemberReview?memberId=${memberId}`)
             .then((res) => res.json())
             .then((data) => {
                 // data가 객체 형태일 경우를 대비

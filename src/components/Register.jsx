@@ -17,7 +17,7 @@ export default function RegisterPage() {
         };
 
         try {
-            const response = await fetch(`https://kernel360-avengers-team.duckdns.org/api/signup`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export default function RegisterPage() {
 
             if (response.ok) {
                 alert('회원가입 성공! 로그인 해주세요.');
-                navigate(`https://kernel360-avengers-team.duckdns.org/api/login`);  // /api/login은 API 엔드포인트이고, 실제 페이지는 /login일 가능성이 높습니다
+                navigate(`/api/login`);  // /api/login은 API 엔드포인트이고, 실제 페이지는 /login일 가능성이 높습니다
             } else {
                 const errorData = await response.text();
                 alert(`회원가입 실패: ${errorData}`);

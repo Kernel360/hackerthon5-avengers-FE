@@ -63,7 +63,7 @@ const MovieList = () => {
             searchType,
         });
 
-        fetch(`https://kernel360-avengers-team.duckdns.org/api/movies?${params.toString()}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/movies?${params.toString()}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.results) {

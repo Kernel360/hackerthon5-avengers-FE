@@ -9,7 +9,7 @@ const ChatBox = ({ movieId }) => {
     const [stompClient, setStompClient] = useState(null);
 
     useEffect(() => {
-        const socket = new SockJS('https://kernel360-avengers-team.duckdns.org/ws');
+        const socket = new SockJS('${process.env.REACT_APP_API_BASE_URL}/ws');
         const client = new Client({
             webSocketFactory: () => socket,
             reconnectDelay: 5000,

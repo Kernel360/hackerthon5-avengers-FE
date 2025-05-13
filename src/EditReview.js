@@ -9,7 +9,7 @@ const EditReview = () => {
     console.log("reviewId:", reviewId);  // 값이 잘 출력되는지 확인
 
     useEffect(() => {
-        fetch(`https://kernel360-avengers-team.duckdns.org/review/getOneReview/${reviewId}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/review/getOneReview/${reviewId}`)
             .then((res) => res.json())
             .then((data) => setReview(data))
             .catch((err) => {
@@ -26,7 +26,7 @@ const EditReview = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("호출됨");
-        fetch(`https://kernel360-avengers-team.duckdns.org/review/updateReview?reviewId=${reviewId}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/review/updateReview?reviewId=${reviewId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

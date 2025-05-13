@@ -29,7 +29,7 @@ const MovieDetail = ({ movieId }) => {
 
 
     useEffect(() => {
-        fetch(`https://kernel360-avengers-team.duckdns.org/api/movies/${movieId}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/movies/${movieId}`)
             .then((res) => res.json())
             .then((data) => {
                 setData(data);
@@ -43,7 +43,7 @@ const MovieDetail = ({ movieId }) => {
 
     const handleDelete = (reviewId) => {
         if (window.confirm("정말 이 리뷰를 삭제하시겠습니까?")) {
-            fetch(`https://kernel360-avengers-team.duckdns.org/review/deleteReview?reviewId=${reviewId}`, {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/review/deleteReview?reviewId=${reviewId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const MovieDetail = ({ movieId }) => {
                     if (!res.ok) throw new Error("삭제 실패");
                     alert("리뷰가 삭제되었습니다.");
                     // 삭제 후 리뷰 목록 새로고침
-                    return fetch(`https://kernel360-avengers-team.duckdns.org/api/movies/${movieId}`)
+                    return fetch(`${process.env.REACT_APP_API_BASE_URL}/api/movies/${movieId}`)
                         .then((res) => res.json())
                         .then((data) => setData(data));
                 })

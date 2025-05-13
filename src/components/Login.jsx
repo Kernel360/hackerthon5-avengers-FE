@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // ✅ context import 경로 확인할 것
 
 export default function LoginPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { login } = useAuth();  // ✅ context에서 login 메서드 사용
     const navigate = useNavigate();
 
-    const payload = {
-        email: email,
-        password: password
-    };
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
         try {
-            const res = await fetch(`https://kernel360-avengers-team.duckdns.org/api/login`, {
+            const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({ email, password }),
             });
 
+            if (!res.ok) {
+                throw new Error("로그인 실패");
+            }
+
             const data = await res.json();
-            localStorage.setItem('jwt', data.jwt);
+            login(data.jwt); // ✅ context를 통해 전역 상태로 저장
             navigate(`/review/getMyReview`);
         } catch (err) {
             alert('로그인 실패');
         }
     };
-
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
