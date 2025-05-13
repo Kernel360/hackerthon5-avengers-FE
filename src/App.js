@@ -11,11 +11,12 @@ import Register from "./components/Register"; // 회원가입
 import NavBar from './components/Navbar'    //navbar
 import MyPage from "./components/MyPage";
 import EditReview from "./EditReview"; // 마이페이지 컴포넌트
-
+import { AuthProvider } from "./context/AuthContext"; // 추가
 
 
 function App() {
     return (
+        <AuthProvider>
         <Router>
             <NavBar/>
             <Routes>
@@ -27,13 +28,14 @@ function App() {
                 <Route path="/reviewPage/:memberId" element={<MemberReview />} />
                 {/* 회원가입 페이지 라우트 추가 */}
                 <Route path="/api/signup" element={<Register />}/>
-
+                    
                 {/* 로그인 페이지 라우트 추가 */}
                 <Route path="/api/login" element={<Login />}/>
                 {/* 마이페이지 라우트 추가 */}
                 <Route path="/review/getMyReview" element={<MyPage />} />
             </Routes>
         </Router>
+        </AuthProvider>
     );
 }
 
