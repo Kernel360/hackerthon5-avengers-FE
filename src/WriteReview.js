@@ -33,7 +33,7 @@ const WriteReview = () => {
     useEffect(() => {
         if (!jwt) return;
 
-        fetch("${process.env.REACT_APP_API_BASE_URL}/api/users/me", {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/me`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -65,7 +65,7 @@ const WriteReview = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("${process.env.REACT_APP_API_BASE_URL}/review/createReview", {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/review/createReview`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

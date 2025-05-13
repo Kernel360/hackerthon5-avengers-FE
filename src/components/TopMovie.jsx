@@ -5,7 +5,7 @@ const TopMovie = () => {
     const [topMovies, setTopMovies] = useState([]);
 
     useEffect(() => {
-        fetch('${process.env.REACT_APP_API_BASE_URL}/api/movies/getPopular')
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/movies/getPopular`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.results) {

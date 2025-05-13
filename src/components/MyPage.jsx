@@ -9,7 +9,7 @@ const MyPage = () => {
         if (!token) return;
         
         // 유저 정보
-        fetch('${process.env.REACT_APP_API_BASE_URL}/api/users/me', {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/me`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ const MyPage = () => {
             .catch(console.error);
 
         // 유저 리뷰
-        fetch('${process.env.REACT_APP_API_BASE_URL}/review/getMyReview', {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/review/getMyReview`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

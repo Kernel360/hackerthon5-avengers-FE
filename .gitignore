@@ -43,3 +43,4 @@ ehthumbs.db
 
 # Mac system files
 *.DS_Store
+.vercel
